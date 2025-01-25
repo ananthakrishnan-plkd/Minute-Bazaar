@@ -1,3 +1,8 @@
+
+
+
+
+
 # Ultimate Online Groceries Shop App Convent Into Flutter - Shop Smart, Save Time
 
 🛒 Looking for the easiest way to shop for groceries? Welcome to our online groceries shop app, your one-stop solution for all your grocery needs! 🍎🥦🥕
@@ -74,3 +79,67 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+# Flutter Configuration
+Flutter (Channel stable, 3.27.2, on Microsoft Windows [Version 10.0.26100.2894], locale en-US)
+• Flutter version 3.27.2 on channel stable at C:\Users\HP\flutter
+• Upstream repository https://github.com/flutter/flutter.git
+• Framework revision 68415ad1d9 (11 days ago), 2025-01-13 10:22:03 -0800
+• Engine revision e672b006cb
+• Dart version 3.6.1
+• DevTools version 2.40.2
+
+[√] Windows Version (Installed version of Windows is version 10 or higher)
+
+[√] Android toolchain - develop for Android devices (Android SDK version 34.0.0)
+• Android SDK at C:\Users\HP\AppData\Local\Android\sdk
+• Platform android-35, build-tools 34.0.0
+• Java binary at: C:\Program Files\Java\jdk-17.0.12\bin\java
+• Java version Java(TM) SE Runtime Environment (build 17.0.12+8-LTS-286)
+• All Android licenses accepted.
+
+[√] Chrome - develop for the web
+• Chrome at C:\Users\HP\AppData\Local\Google\Chrome\Application\chrome.exe
+
+[X] Visual Studio - develop Windows apps
+X Visual Studio not installed; this is necessary to develop Windows apps.
+Download at https://visualstudio.microsoft.com/downloads/.
+Please install the "Desktop development with C++" workload, including all of its default components
+
+[√] Android Studio (version 2024.2)
+• Android Studio at C:\Program Files\Android\Android Studio
+• Flutter plugin can be installed from:
+https://plugins.jetbrains.com/plugin/9212-flutter
+• Dart plugin can be installed from:
+https://plugins.jetbrains.com/plugin/6351-dart
+• Java version OpenJDK Runtime Environment (build 21.0.4+-12508038-b607.1)
+
+[√] VS Code (version 1.96.4)
+• VS Code at C:\Users\HP\AppData\Local\Programs\Microsoft VS Code
+• Flutter extension version 3.102.0
+
+[√] Connected device (3 available)
+• Windows (desktop) • windows • windows-x64    • Microsoft Windows [Version 10.0.26100.2894]
+• Chrome (web)      • chrome  • web-javascript • Google Chrome 131.0.6778.267
+• Edge (web)        • edge    • web-javascript • Microsoft Edge 132.0.2957.115
+
+[√] Network resources
+• All expected network resources are available.
+
+! Doctor found issues in 1 category.
+
+
+# Envirnment Variables
+
+User Variable >> Path 
+
+C:\Users\HP\flutter\bin
+C:\Program Files\Java\jdk-17.0.12\bin
+
+
+#Other
+flutter pub cache clean   
+flutter pub upgrade --major-versions
+flutter pub outdated
+./gradlew wrapper --gradle-version 8.0.2

@@ -1,4 +1,4 @@
-package com.codeforany.online_groceries
+package com.comfinity.minute_bazaar
 
 import io.flutter.embedding.android.FlutterActivity
 
