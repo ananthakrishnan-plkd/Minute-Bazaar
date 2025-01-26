@@ -48,12 +48,16 @@ class _SignUpViewState extends State<SignUpView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: media.width * 0.13,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+
                       Image.asset(
-                        "assets/img/color_logo.png",
-                        width: 40,
+                        "assets/img/sign_up_image.png",
+                        width: media.width*0.5,
                       ),
                     ],
                   ),
@@ -61,7 +65,7 @@ class _SignUpViewState extends State<SignUpView> {
                     height: media.width * 0.15,
                   ),
                   Text(
-                    "Sign Up",
+                    "Enter Your Phone Number",
                     style: TextStyle(
                         color: TColor.primaryText,
                         fontSize: 26,
@@ -71,7 +75,7 @@ class _SignUpViewState extends State<SignUpView> {
                     height: media.width * 0.03,
                   ),
                   Text(
-                    "Enter your credentials to continue",
+                    "You'll receive an OTP to verify your phone.",
                     style: TextStyle(
                         color: TColor.secondaryText,
                         fontSize: 16,
@@ -80,40 +84,70 @@ class _SignUpViewState extends State<SignUpView> {
                   SizedBox(
                     height: media.width * 0.1,
                   ),
-                  LineTextField(
-                    title: "Username",
-                    placeholder: "Enter your username",
-                    controller: signUpVM.txtUsername.value,
+                  Row(
+                    children: [
+                      // Country Code Dropdown
+                      Container(
+                        width: media.width * 0.25,
+                        child: DropdownButtonFormField<String>(
+                          value: signUpVM.selectedCountryCode.value,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal: 10,
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                          ),
+                          items: signUpVM.countryCodes
+                              .map(
+                                (code) => DropdownMenuItem(
+                              value: code,
+                              child: Text(
+                                code,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          )
+                              .toList(),
+                          onChanged: (value) {
+                            signUpVM.selectedCountryCode.value = value!;
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      // Phone Number Field
+                      Expanded(
+                        child: TextField(
+                          controller: signUpVM.txtPhoneNumber.value,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            hintText: "Enter your phone number",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            contentPadding: const EdgeInsets.symmetric(
+                              vertical: 15,
+                              horizontal: 10,
+                            ),
+                            filled: true,
+                            fillColor: Colors.grey[200],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: media.width * 0.07,
                   ),
-                  LineTextField(
-                    title: "Email",
-                    placeholder: "Enter your email address",
-                    controller: signUpVM.txtEmail.value,
-                    keyboardType: TextInputType.emailAddress,
-                  ),
+
                   SizedBox(
-                    height: media.width * 0.07,
-                  ),
-                  Obx(() => 
-                  LineTextField(
-                    title: "Password",
-                    placeholder: "Enter your password",
-                    controller: signUpVM.txtPassword.value,
-                    obscureText: !signUpVM.isShowPassword.value,
-                    right: IconButton(
-                        onPressed: () {
-                          signUpVM.showPassword();
-                        },
-                        icon: Icon(
-                           !signUpVM.isShowPassword.value ? Icons.visibility_off : Icons.visibility,
-                          color: TColor.textTittle,
-                        )),
-                  )),
-                  SizedBox(
-                    height: media.width * 0.04,
+                    height: media.width * 0.11,
                   ),
                   RichText(
                     text: TextSpan(
@@ -151,44 +185,14 @@ class _SignUpViewState extends State<SignUpView> {
                     height: media.width * 0.05,
                   ),
                   RoundButton(
-                    title: "Sign Up",
+                    title: "Continue",
                     onPressed: () {
-                      signUpVM.serviceCallSignUp();
+                      signUpVM.sendOtp();
+
                     },
                   ),
                   SizedBox(
                     height: media.width * 0.02,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                "Already have an account?",
-                                style: TextStyle(
-                                    color: TColor.primaryText,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                "Sign In",
-                                style: TextStyle(
-                                    color: TColor.primary,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ],
-                          ))
-                    ],
                   ),
                 ],
               ),

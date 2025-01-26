@@ -30,7 +30,27 @@ class _SplashViewState extends State<SplashView> {
       backgroundColor: TColor.primary,
       body: Center(
         child:
-            Image.asset("assets/img/splash_logo.png", width: media.width * 0.7),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/img/splash_logo.png",
+              width: media.width * 0.5,
+            ),
+
+
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(height: 10,),
+                Image.asset(
+                  "assets/img/logo_name_only.png",
+                  width: media.width * 0.7, // Adjust width as needed
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

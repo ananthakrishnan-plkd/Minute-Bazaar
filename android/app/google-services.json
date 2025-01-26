@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "972095511322",
-    "project_id": "minute-bazaar",
-    "storage_bucket": "minute-bazaar.firebasestorage.app"
+    "project_number": "122567991125",
+    "project_id": "minute-bazaar-61214",
+    "storage_bucket": "minute-bazaar-61214.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:972095511322:android:6f532cd824c0ce186aeaa3",
+        "mobilesdk_app_id": "1:122567991125:android:7fce7cdd20a3aa0fe819dc",
         "android_client_info": {
           "package_name": "com.comfinity.minute_bazaar"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyA7mXSCsvMZ7rq8-mUimf48KNWAXBTfg50"
+          "current_key": "AIzaSyAY2tELUad_33NH3TEz-0xoMdnsEf-rndY"
         }
       ],
       "services": {

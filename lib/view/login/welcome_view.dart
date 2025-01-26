@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:online_groceries/view/login/sign_in_view.dart';
+
+import 'package:online_groceries/view/login/sign_up_view.dart';
+import '../../common/color_extension.dart';
 
 import '../../common_widget/round_button.dart';
 
@@ -25,7 +27,7 @@ class _WelcomeViewState extends State<WelcomeView> {
   Widget build(BuildContext context) {
     var media = MediaQuery.sizeOf(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: TColor.primary,
       body: Stack(
         children: [
           Image.asset(
@@ -40,19 +42,17 @@ class _WelcomeViewState extends State<WelcomeView> {
           
               children: [
 
-                Image.asset("assets/img/app_logo.png", width: 60, height: 60, ),
-                const SizedBox(
-                  height: 8,
-                ),
+                Image.asset("assets/img/app_logo.png", width: 120, height: 120, ),
+
 
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                      Text(
-                      "Welcome\nto our store",
+                      "Welcome to\n Minute Bazaar",
                       style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 48,
+                          color: Colors.black54,
+                          fontSize: 46,
                           fontWeight: FontWeight.w600),
                     ),
                   ],
@@ -62,9 +62,9 @@ class _WelcomeViewState extends State<WelcomeView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                      Text(
-                      "Ger your groceries in as fast as one hour",
+                      "Shop groceries in minutes, anytime, anywhere",
                       style: TextStyle(
-                          color: const Color(0xffFCFCFC).withOpacity(0.7),
+                          color: const Color(0xff000000).withOpacity(1),
                           fontSize: 16,
                           fontWeight: FontWeight.w500),
                     ),
@@ -72,12 +72,12 @@ class _WelcomeViewState extends State<WelcomeView> {
                 ),
 
 
-                const SizedBox(height: 20,),
+                const SizedBox(height: 50,),
 
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: RoundButton(title: "Get Started", onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignInView() ) );
+                  child: RoundButton(title: "Start Shopping", onPressed: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpView() ) );
                   },),
                 ),
                 

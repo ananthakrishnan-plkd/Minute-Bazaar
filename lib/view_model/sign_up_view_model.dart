@@ -1,78 +1,64 @@
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:online_groceries/common/globs.dart';
 import 'package:online_groceries/common/service_call.dart';
 import 'package:online_groceries/view_model/splash_view_model.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../view/login/verification_view.dart';
+
 
 class SignUpViewModel extends GetxController {
-  final txtUsername = TextEditingController().obs;
-  final txtEmail = TextEditingController().obs;
-  final txtPassword = TextEditingController().obs;
-  final isShowPassword = false.obs;
 
+
+  final txtPhoneNumber = TextEditingController().obs;
+  final selectedCountryCode = "+971".obs;
   final isLoading = false.obs;
+  final List<String> countryCodes = ["+971", "+91", "+1", "+44", "+61"];
 
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-    if (kDebugMode) {
-      print("SignUpViewModel Init ");
-    }
-    txtUsername.value.text = "User1";
-    txtEmail.value.text = "user1@gmail.com";
-    txtPassword.value.text = "123456";
-  }
+  void sendOtp() async {
+    String phoneNumber = txtPhoneNumber.value.text.trim();
+    String fullPhoneNumber = "${selectedCountryCode.value}$phoneNumber";
 
-  //ServiceCall
-  void serviceCallSignUp() {
-
-    if(txtUsername.value.text.isEmpty) {
-      Get.snackbar(Globs.appName, "Pleaser enter username");
+    if (phoneNumber.isEmpty) {
+      Get.snackbar("Error", "Please enter your phone number.");
       return;
     }
 
-    if ( !GetUtils.isEmail(  txtEmail.value.text )  ) {
-      Get.snackbar(Globs.appName, "Pleaser enter valid email address");
-      return;
+    try {
+      isLoading.value = true;
+
+      await _auth.verifyPhoneNumber(
+        phoneNumber: fullPhoneNumber,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          // Auto-retrieval or instant verification on certain devices
+          await _auth.signInWithCredential(credential);
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          isLoading.value = false;
+          Get.snackbar("Verification Failed", e.message ?? "Unknown error");
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          isLoading.value = false;
+          // Navigate to the OTP verification screen
+          Get.to(() => VerificationView(verificationId: verificationId));
+
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          isLoading.value = false;
+          print("Code auto-retrieval timed out for verificationId: $verificationId");
+        },
+      );
+    } catch (e) {
+      isLoading.value = false;
+      Get.snackbar("Error", e.toString());
     }
-
-    if (txtPassword.value.text.length < 6) {
-      Get.snackbar(Globs.appName, "Pleaser enter valid password min 6 character");
-      return;
-    }
-
-    Globs.showHUD();
-
-    ServiceCall.post({
-      "username": txtUsername.value.text,
-      "email": txtEmail.value.text,
-      "password": txtPassword.value.text,
-      "dervice_token": ""
-    }, SVKey.svSignUp, withSuccess: (resObj) async {
-      Globs.hideHUD();
-
-      if (resObj[KKey.status] == "1") {
-        var payload = resObj[KKey.payload] as Map? ?? {};
-
-        Globs.udSet(payload, Globs.userPayload);
-        Globs.udBoolSet(true, Globs.userLogin);
-
-        
-        Get.delete<SignUpViewModel>();
-        Get.find<SplashViewModel>().goAfterLoginMainTab();
-      } else {}
-
-      Get.snackbar(Globs.appName, resObj["message"].toString());
-    }, failure: (err) async {
-      Globs.hideHUD();
-      Get.snackbar(Globs.appName, err.toString());
-    });
-  }
-
-  void showPassword() {
-    isShowPassword.value = !isShowPassword.value;
   }
 }
+
+
+
+

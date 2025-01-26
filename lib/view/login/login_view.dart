@@ -5,7 +5,7 @@ import 'package:online_groceries/view_model/login_view_model.dart';
 import '../../common/color_extension.dart';
 import '../../common_widget/line_textfield.dart';
 import '../../common_widget/round_button.dart';
-import 'forgot_password_view.dart';
+
 
 class LogInView extends StatefulWidget {
   const LogInView({super.key});
@@ -112,7 +112,7 @@ class _LogInViewState extends State<LogInView> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Get.to(() => const ForgotPasswordView());
+
                         },
                         child: Text(
                           "Forgot Password?",

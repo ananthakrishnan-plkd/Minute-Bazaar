@@ -143,3 +143,9 @@ flutter pub cache clean
 flutter pub upgrade --major-versions
 flutter pub outdated
 ./gradlew wrapper --gradle-version 8.0.2
+
+
+Warning: Pub installs executables into C:\Users\HP\AppData\Local\Pub\Cache\bin, which is not on your path.
+You can fix that by adding that directory to your system's "Path" environment variable.
+A web search for "configure windows path" will show you how.
+Activated flutterfire_cli 1.0.1.
